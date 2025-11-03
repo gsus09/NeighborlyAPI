@@ -1,2 +1,6 @@
-azure-functions==1.2.1
-pymongo==3.10.1
+azure-functions==1.9.0
+azure-cosmos
+azure-cli-core
+pymongo==4.0.2
+pymongo[srv]
+dnspython>=2.0.0
