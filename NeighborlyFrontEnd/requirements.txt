@@ -3,8 +3,8 @@ certifi==2023.7.22
 chardet==5.2.0
 click==8.1.7
 dominate==2.7.0
-Flask==2.3.3
-flask-bootstrap
+Flask
+Flask-Bootstrap
 idna==3.4
 itsdangerous==2.1.2
 Jinja2==3.1.2
