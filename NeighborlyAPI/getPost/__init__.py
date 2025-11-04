@@ -2,7 +2,6 @@ import azure.functions as func
 import pymongo
 import json
 from bson.json_util import dumps
-from bson.objectid import ObjectId
 import os
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -16,7 +15,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             database = client['course2db']
             collection = database['posts']
 
-            query = {'_id': ObjectId(id)}
+            query = {'_id': id}
             result = collection.find_one(query)
             result = dumps(result)
 

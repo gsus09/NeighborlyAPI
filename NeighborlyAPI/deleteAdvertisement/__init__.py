@@ -1,6 +1,6 @@
 import azure.functions as func
 import pymongo
-from bson.objectid import ObjectId
+from bson import ObjectId
 import os
 
 
@@ -15,7 +15,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             database = client['course2db']
             collection = database['advertisements']
             
-            query = {'_id': ObjectId(id)}
+            query = {'_id': ObjectId(id)} if ObjectId.is_valid(id) else {'_id': id}
             result = collection.delete_one(query)
             return func.HttpResponse("")
 

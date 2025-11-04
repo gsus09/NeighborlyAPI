@@ -2,7 +2,6 @@ import azure.functions as func
 import pymongo
 import json
 from bson.json_util import dumps
-from bson.objectid import ObjectId
 import logging
 import os
 
@@ -19,15 +18,16 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             client = pymongo.MongoClient(url)
             database = client['course2db']
             collection = database['advertisements']
-           
-            query = {'_id': ObjectId(id)}
+            
+            query = {'_id': id}
             result = collection.find_one(query)
+            if not result:
+                return func.HttpResponse("Not found", status_code=404)
             print("----------result--------")
 
             result = dumps(result)
             print(result)
-
-            return func.HttpResponse(result, mimetype="application/json", charset='utf-8')
+            return func.HttpResponse(dumps(result), mimetype="application/json", charset='utf-8')
         except:
             return func.HttpResponse("Database connection error.", status_code=500)
 
